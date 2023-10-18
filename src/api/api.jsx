@@ -1,0 +1,1 @@
+const BASE_URL = 'http://185.8.172.145:88/swagger/index.html';
