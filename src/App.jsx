@@ -7,8 +7,8 @@ const App = () => {
   return (
     <>
 {/* <User /> */}
-    <FormUser />
       <Routes>
+        <Route path='/' element={<FormUser />} />
         <Route path='/user' element={<User />} />
       </Routes>
 

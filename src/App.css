@@ -1,19 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&family=Roboto:wght@400;500&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&family=Roboto:wght@400;500&display=swap');
-
 body {
   background-color: #ffff;
   font-family: 'Poppins', sans-serif;
-  /* background-image: url(../public/image/9Z_2102.w020.n001.1044B.p15.1044.jpg); */
-  /* background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 490px;
-  width: 50%; */
-
 }
