@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 const User = () => {
+  const config = {
+    headers: {
+      token: localStorage.getItem('token')
+    }
+  }
+  console.log(localStorage.getItem('token'))
+  useEffect(() => {
+    fetch('http://185.8.172.145:88/api/User/getUsers', config
+    ).then(res => console.log(res))
+
+
+  }, [])
   return (
     <div className='container mx-auto'>
-        <h1 className='text-[28px] text-orange font-bold text-center py-4'>Users List</h1>
-        <div className='border border-b-2 w-full'></div>
+      <h1 className='text-[28px] text-orange font-bold text-center py-4'>Users List</h1>
+      <div className='border border-b-2 w-full'></div>
+      <form>
+
         <div className='flex justify-between mx-4 lg:mx-0'>
           <p className='text-[#000] text-[20px] font-bold mt-10'>soraya</p>
           <div className='mt-10 flex gap-3 lg:gap-10 '>
-            <button className='bg-orange  font-medium rounded-lg text-sm w-[85px] lg:w-[150px]  h-[40px] text-center text-[#fff]'>Add User</button>
+            <Link to='/adduser'>
+              <button className='bg-orange  font-medium rounded-lg text-sm w-[85px] lg:w-[150px]  h-[40px] text-center text-[#fff]'>Add User</button>
+            </Link>
             <button className='bg-blue-700  font-medium rounded-lg text-sm w-[85px] lg:w-[150px] h-[40px] text-center text-[#fff]'>Edite User</button>
             {/* modal for button delete */}
             <button className="bg-[#dc2626]  font-medium rounded-lg text-sm w-[85px] lg:w-[150px]  h-[40px] text-center text-[#fff]" onClick={() => document.getElementById('my_modal_1').showModal()}>Delete User</button>
@@ -29,6 +46,8 @@ const User = () => {
             </dialog>
           </div>
         </div>
+      </form>
+
     </div>
   )
 }
