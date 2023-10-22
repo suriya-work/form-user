@@ -1,25 +1,50 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
 import back from '../../../public/image/back.jpg'
 const FormUser = () => {
-    // stata and useEffect
+    // state and useEffect
     const [userName, setUserName] = useState("");
-    const [password, setPasswprd] = useState("");
-    // submitHandler
-    const submitHandler = (event) => {
-        event.preventDefault();
+    const [password, setPassword] = useState("");
+    const [redirect, setRedirect] = useState(false);
+
+    //submit
+    const login = async (e) => {
+        e.preventDefault();
+        // console.log('me error')
+        const response = await fetch('http://185.8.172.145:88/api/Account/login', {
+            method: "POST",
+            body: JSON.stringify({
+                userName,
+                password
+            }),
+            headers: { "content-Type": "application/json" },
+        })
+        if (response.ok) {
+            response.json().then(res => {
+                const { refreshToken } = res.resultViewModel;
+                localStorage.setItem('token', refreshToken);
+                setRedirect(true)
+
+                console.log(refreshToken)
+            })
+        } else {
+            alert('error')
+        }
+
+    }
+    if (redirect) {
+        return <Navigate to={'/user'} />
     }
     // onchange
     const changeUserName = (e) => {
         const userName = e.target.value;
         setUserName(userName)
-        console.log(userName)
     }
     const changePassword = (e) => {
         const password = e.target.value;
-        setPasswprd(password)
+        setPassword(password)
     }
 
 
@@ -32,7 +57,7 @@ const FormUser = () => {
             {/* form submit */}
             <div className="w-full max-w-sm mt-4">
                 <h1 className='text-[20px] text-orange font-bold text-center'>Welcome</h1>
-                <form onSubmit={submitHandler} className="bg-white h-auto px-8 pt-14">
+                <form onSubmit={login} className="bg-white h-auto px-8 pt-14">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-8">
                             UserName
@@ -47,11 +72,11 @@ const FormUser = () => {
                         <p className="text-orange text-xs italic">Please choose a password.</p>
                     </div>
                     <div className="flex items-center justify-center">
-                        <Link to='/user' className='w-full'>
-                            <button className="bg-orange text-white font-bold py-3 w-full px-2 rounded focus:outline-none focus:shadow-outline" type="button">
-                                Log In
-                            </button>
-                        </Link>
+                        {/* <Link to='/user' className='w-full'> */}
+                        <button className="bg-orange text-white font-bold py-3 w-full px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Log In
+                        </button>
+                        {/* </Link> */}
 
                     </div>
                     {/* OR and Icons */}
