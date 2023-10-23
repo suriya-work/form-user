@@ -12,7 +12,6 @@ const FormUser = () => {
     //submit
     const login = async (e) => {
         e.preventDefault();
-        // console.log('me error')
         const response = await fetch('http://185.8.172.145:88/api/Account/login', {
             method: "POST",
             body: JSON.stringify({
@@ -23,20 +22,22 @@ const FormUser = () => {
         })
         if (response.ok) {
             response.json().then(res => {
-                const { refreshToken } = res.resultViewModel;
-                localStorage.setItem('token', refreshToken);
+                const { accessToken } = res.resultViewModel;
+                localStorage.setItem('token', accessToken);
                 setRedirect(true)
 
-                console.log(refreshToken)
+                console.log(accessToken)
             })
         } else {
             alert('error')
         }
 
     }
+
     if (redirect) {
         return <Navigate to={'/user'} />
     }
+    
     // onchange
     const changeUserName = (e) => {
         const userName = e.target.value;
