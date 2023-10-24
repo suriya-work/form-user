@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { BsFacebook } from 'react-icons/bs'
 import back from '../../../public/image/back.jpg'
+
 const FormUser = () => {
-    // state and useEffect
+    // state
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
@@ -31,13 +32,12 @@ const FormUser = () => {
         } else {
             alert('error')
         }
-
     }
 
     if (redirect) {
         return <Navigate to={'/user'} />
     }
-    
+
     // onchange
     const changeUserName = (e) => {
         const userName = e.target.value;
@@ -70,14 +70,11 @@ const FormUser = () => {
                             Password
                         </label>
                         <input className="shadow-md appearance-none border-red-500 rounded w-full py-3 px-3 text-gray-700 mb-8 leading-tight focus:outline-none focus:shadow-outline" type="password" placeholder="**********" value={password} onChange={changePassword} />
-                        <p className="text-orange text-xs italic">Please choose a password.</p>
                     </div>
                     <div className="flex items-center justify-center">
-                        {/* <Link to='/user' className='w-full'> */}
                         <button className="bg-orange text-white font-bold py-3 w-full px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Log In
                         </button>
-                        {/* </Link> */}
 
                     </div>
                     {/* OR and Icons */}

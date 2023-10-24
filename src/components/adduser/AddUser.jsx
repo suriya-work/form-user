@@ -81,12 +81,9 @@ const AddUser = ({ users }) => {
 
                     </div>
                     <div className="flex items-center justify-center">
-                        {/* <Link to='/user' className='w-full'> */}
                         <button className="bg-orange text-white font-bold py-3 w-full px-2 rounded focus:outline-none focus:shadow-outline disabled:bg-[#c0c2c0ee]" type="submit" disabled={!userName || !password}>
                             Add User
                         </button>
-                        {/* </Link> */}
-
                     </div>
                 </form>
             </div>
